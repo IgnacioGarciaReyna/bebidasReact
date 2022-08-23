@@ -1,7 +1,38 @@
 import React from "react";
 
 const Formulario = () => {
-  return <h1>Formulario</h1>;
+  return (
+    <form className="col-12">
+      <fieldset className="text-center">
+        <legend>Buscar bebidas por Categoría o Ingrediente</legend>
+      </fieldset>
+
+      <div className="row mt-4">
+        <div className="col-md-4">
+          <input
+            type="text"
+            name="nombre"
+            className="form-control"
+            placeholder="Buscar por Ingrediente"
+          />
+        </div>
+        <div className="col-md-4">
+          <select className="form-control" name="categoria">
+            <option value="" key="">
+              -- Selecciona categoría --
+            </option>
+          </select>
+        </div>
+        <div className="col-md-4">
+          <input
+            type="submit"
+            className="btn btn-block btn-primary"
+            value="Buscar bebidas"
+          />
+        </div>
+      </div>
+    </form>
+  );
 };
 
 export default Formulario;
