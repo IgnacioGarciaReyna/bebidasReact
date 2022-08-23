@@ -1,13 +1,25 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { CategoriasContext } from "../context/CategoriasContext";
 
 const Formulario = () => {
+  //No por usar context se debe crear solo states que estén en el context. Se pueden crear state para cada componente
+  const [busqueda, guardarBusqueda] = useState({
+    nombre: "",
+    categoria: "",
+  });
+
   //Consumir los datos del context
   //Aquí useContext pide un context que es el que creamos en CategoriasContext.js. Por eso debemos importarlo
   //categorias es el resultado del llamado a la api
   const { categorias } = useContext(CategoriasContext);
 
-  console.log(categorias);
+  //función para leer los contenidos
+  const obtenerDatosReceta = (e) => {
+    guardarBusqueda({
+      ...busqueda,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   return (
     <form className="col-12">
@@ -22,10 +34,11 @@ const Formulario = () => {
             name="nombre"
             className="form-control"
             placeholder="Buscar por Ingrediente"
+            onChange={obtenerDatosReceta}
           />
         </div>
         <div className="col-md-4">
-          <select className="form-control" name="categoria">
+          <select className="form-control" name="categoria" onChange={obtenerDatosReceta}>
             <option value="" key="">
               -- Selecciona categoría --
             </option>
