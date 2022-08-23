@@ -4,9 +4,10 @@ import { CategoriasContext } from "../context/CategoriasContext";
 const Formulario = () => {
   //Consumir los datos del context
   //Aquí useContext pide un context que es el que creamos en CategoriasContext.js. Por eso debemos importarlo
-  const { hola } = useContext(CategoriasContext);
+  //categorias es el resultado del llamado a la api
+  const { categorias } = useContext(CategoriasContext);
 
-  alert(hola);
+  console.log(categorias);
 
   return (
     <form className="col-12">
