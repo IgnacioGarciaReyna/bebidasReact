@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { CategoriasContext } from "../context/CategoriasContext";
+import { RecetasContext } from "../context/RecetasContex";
 
 const Formulario = () => {
   //No por usar context se debe crear solo states que estén en el context. Se pueden crear state para cada componente
@@ -13,6 +14,9 @@ const Formulario = () => {
   //categorias es el resultado del llamado a la api
   const { categorias } = useContext(CategoriasContext);
 
+  //Context recetas
+  const { buscarRecetas } = useContext(RecetasContext);
+
   //función para leer los contenidos
   const obtenerDatosReceta = (e) => {
     guardarBusqueda({
@@ -22,7 +26,13 @@ const Formulario = () => {
   };
 
   return (
-    <form className="col-12">
+    <form
+      className="col-12"
+      onSubmit={(e) => {
+        e.preventDefault();
+        buscarRecetas(busqueda);
+      }}
+    >
       <fieldset className="text-center">
         <legend>Buscar bebidas por Categoría o Ingrediente</legend>
       </fieldset>
@@ -38,7 +48,11 @@ const Formulario = () => {
           />
         </div>
         <div className="col-md-4">
-          <select className="form-control" name="categoria" onChange={obtenerDatosReceta}>
+          <select
+            className="form-control"
+            name="categoria"
+            onChange={obtenerDatosReceta}
+          >
             <option value="" key="">
               -- Selecciona categoría --
             </option>
