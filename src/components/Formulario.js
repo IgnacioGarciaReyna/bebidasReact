@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CategoriasContext } from "../context/CategoriasContext";
 
 const Formulario = () => {
+  //Consumir los datos del context
+  //Aquí useContext pide un context que es el que creamos en CategoriasContext.js. Por eso debemos importarlo
+  const { hola } = useContext(CategoriasContext);
+
+  alert(hola);
+
   return (
     <form className="col-12">
       <fieldset className="text-center">
