@@ -3,10 +3,10 @@ import Formulario from "./components/Formulario";
 import Header from "./components/Header";
 import ListaRecetas from "./components/ListaRecetas";
 
-
 //Context
 import CategoriasProvider from "./context/CategoriasContext";
 import RecetasProvider from "./context/RecetasContex";
+import ModalProvider from "./context/ModalContext";
 
 function App() {
   return (
@@ -16,13 +16,15 @@ function App() {
     //Si un componente no está dentro de un provider, no puede usar sus props
     <CategoriasProvider>
       <RecetasProvider>
-        <Header />
-        <div className="container mt-5">
-          <div className="row">
-            <Formulario />
+        <ModalProvider>
+          <Header />
+          <div className="container mt-5">
+            <div className="row">
+              <Formulario />
+            </div>
+            <ListaRecetas />
           </div>
-          <ListaRecetas />
-        </div>
+        </ModalProvider>
       </RecetasProvider>
     </CategoriasProvider>
   );
