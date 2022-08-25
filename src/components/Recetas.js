@@ -56,6 +56,22 @@ const Receta = ({ receta }) => {
   const { informacion, guardarIdReceta, guardarReceta } =
     useContext(ModalContext);
 
+  //Mostrar y formatear los ingredientes (no vienen en un arreglo desde la api)
+  const mostrarIngredientes = (informacion) => {
+    let ingredientes = [];
+    for (let i = 1; i < 16; i++) {
+      if (informacion[`strIngredient${i}`]) {
+        ingredientes.push(
+          <li>
+            {informacion[`strIngredient${i}`]}
+            {informacion[`strMeasure${i}`]}
+          </li>
+        );
+      }
+    }
+    return ingredientes;
+  };
+
   return (
     <div className="col-md-4 mb-3">
       <div className="card">
@@ -100,6 +116,10 @@ const Receta = ({ receta }) => {
                 src={informacion.strDrinkThumb}
                 alt="imgdrink"
               />
+              <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                <b> Ingredientes: </b> <br />
+                <ul>{mostrarIngredientes(informacion)}</ul>
+              </Typography>
             </Box>
           </Modal>
         </div>
